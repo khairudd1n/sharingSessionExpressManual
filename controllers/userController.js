@@ -21,7 +21,18 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  try {
+    const users = await userQueries.getAllUsers();
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Gagal mengambil data users' });
+  }
+};
+
 module.exports = {
   createUser,
+  getUsers
 };
 
