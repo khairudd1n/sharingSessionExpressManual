@@ -1,7 +1,6 @@
 const { Pool } = require('pg');
 
-// sesuain dengan db lu
-const pool = new Pool({
+exports.pool = new Pool({
   user:'postgres',
   host: 'localhost',
   database: 'sharingSession',
@@ -9,4 +8,3 @@ const pool = new Pool({
   port: 5432,
 });
 
-module.exports = pool;

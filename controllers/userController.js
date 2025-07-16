@@ -1,6 +1,6 @@
 const userQueries = require('../query/userQuery');
 
-const createUser = async (req, res) => {
+exports.createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -21,7 +21,7 @@ const createUser = async (req, res) => {
   }
 };
 
-const getUsers = async (req, res) => {
+exports.getUsers = async (req, res) => {
   try {
     const users = await userQueries.getAllUsers();
     res.json(users);
@@ -31,8 +31,4 @@ const getUsers = async (req, res) => {
   }
 };
 
-module.exports = {
-  createUser,
-  getUsers
-};
 
