@@ -21,4 +21,16 @@ exports.getUsers = async (req, res) => {
   }
 };
 
+exports.updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email, password } = req.body;
+    const updatedUser = await userQueries.updateUser(name, email, password, id);
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Gagal memperbarui data user' });
+  }
+};
+
 
