@@ -8,13 +8,13 @@ exports.createUser = async (req, res) => {
     if (!email) return res.status(400).json({ error: 'email is required' });
     if (!password) return res.status(400).json({ error: 'password is required' });
 
-    const existing = await userQueries.cekExistingUser(name);
-    if (existing.length > 0) {
+    const existingUser = await userQueries.cekExistingUser(name);
+    if (existingUser.length > 0) {
       return res.status(409).json({ error: 'Name already exists' });
     }
 
-    const newRole = await userQueries.addUser(name, email, password);
-    res.status(201).json(newRole);
+    const newUser = await userQueries.addUser(name, email, password);
+    res.status(201).json(newUser);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to add new user' });
