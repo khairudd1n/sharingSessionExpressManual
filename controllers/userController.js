@@ -33,4 +33,15 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+exports.deleteUser = async (req, res) =>{
+  try{
+    const {id} = req.query;
+    const deleteduSER = await userQueries.deleteUser(id)
+    res.json(deleteduSER)
+  } catch(err){
+    console.error(err)
+    res.status(500).json({error: 'Gagfal delete data user '})
+  }
+}
+
 

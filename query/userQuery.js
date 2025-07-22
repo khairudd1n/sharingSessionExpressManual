@@ -1,4 +1,4 @@
-const pool = require('../db');
+const {pool} = require('../db');
 
 exports.getAllUsers = async () => {
   const result = await pool.query('SELECT id, name, email FROM users ORDER BY id');
@@ -18,3 +18,9 @@ exports.updateUser = async (id, name, email, password) => {
   [name, email, password, id]);
   return result.rows[0];
 };
+
+exports.deleteUser = async (id) => {
+  const result = await pool.query
+  ('delete from users where id = $1', [id]);
+  return `data ${id} berhasil dihapus`
+}
