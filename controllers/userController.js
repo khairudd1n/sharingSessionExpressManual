@@ -25,7 +25,7 @@ exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, email, password } = req.body;
-    const updatedUser = await userQueries.updateUser(name, email, password, id);
+    const updatedUser = await userQueries.updateUser(id, name, email, password);
     res.json(updatedUser);
   } catch (err) {
     console.error(err);
