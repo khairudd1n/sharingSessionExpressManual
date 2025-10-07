@@ -33,5 +33,16 @@ exports.deleteUser = async (id) => {
   return `data ${id} berhasil dihapus`
 }
 
+exports.createUser2 = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    const newUser = await userQueries.addUser(name, email, password);
+    res.status(201).json(newUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to add new user' });
+  }
+};
+
 
 
