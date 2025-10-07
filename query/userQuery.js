@@ -5,6 +5,14 @@ exports.getAllUsers = async () => {
   return result.rows;
 };
 
+exports.getUser = async (name) => {
+  const result = await pool.query('SELECT name, password FROM users WHERE name = $1', [name]);
+  if (result.rows.length > 0) {
+    return result.rows[0];
+  }
+  return null;
+};
+
 exports.addUser = async (name, email, password) => {
   const result = await pool.query
   ('INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *',
@@ -24,3 +32,5 @@ exports.deleteUser = async (id) => {
   ('delete from users where id = $1', [id]);
   return `data ${id} berhasil dihapus`
 }
+
+
